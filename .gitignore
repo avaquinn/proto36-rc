@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Secrets and local configuration
+.env
+*.pem
+*.key
+secrets/
+config.local.*
+
+# Raspberry Pi / Linux
+*.log
+
+# macOS and Windows
+.DS_Store
+Thumbs.db
+
+# STM32CubeIDE generated files
+Debug/
+Release/
+.settings/
+.metadata/
+*.launch
