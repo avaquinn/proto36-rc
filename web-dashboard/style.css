@@ -1,0 +1,275 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  color-scheme: dark;
+  --bg: #0a0d12;
+  --panel: #121822;
+  --panel-2: #192231;
+  --text: #eef4ff;
+  --muted: #95a3b8;
+  --accent: #4da3ff;
+  --accent-2: #7bc4ff;
+  --danger: #ff4d5a;
+  --border: rgba(255, 255, 255, 0.09);
+  --shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 10% 0%, rgba(77, 163, 255, 0.14), transparent 30%),
+    var(--bg);
+  color: var(--text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.dashboard {
+  width: min(1400px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 24px 0 48px;
+}
+
+.topbar,
+.card-heading,
+.connection-panel,
+.meter-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.topbar {
+  margin-bottom: 20px;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 0;
+  font-size: clamp(1.75rem, 4vw, 2.8rem);
+}
+
+h2 {
+  margin-bottom: 0;
+  font-size: 1.1rem;
+}
+
+.eyebrow {
+  margin-bottom: 5px;
+  color: var(--accent-2);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+
+.card {
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: rgba(18, 24, 34, 0.92);
+  box-shadow: var(--shadow);
+}
+
+.video-card {
+  padding: 18px;
+}
+
+.video-frame {
+  margin-top: 16px;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  border-radius: 13px;
+  background: #000;
+}
+
+.video-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.controls-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.drive-card,
+.telemetry-card,
+.log-card {
+  padding: 20px;
+}
+
+.log-card {
+  grid-column: 1 / -1;
+}
+
+.connection-panel {
+  justify-content: flex-end;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #70798a;
+  box-shadow: 0 0 0 4px rgba(112, 121, 138, 0.15);
+}
+
+.status-dot.connected {
+  background: #45d483;
+  box-shadow: 0 0 0 4px rgba(69, 212, 131, 0.16);
+}
+
+.secondary,
+.stop-button,
+.drive-button {
+  border: 0;
+  color: var(--text);
+}
+
+.secondary {
+  padding: 9px 13px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--panel-2);
+}
+
+.stop-button {
+  padding: 12px 22px;
+  border-radius: 12px;
+  background: var(--danger);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.hint {
+  margin: 14px 0 18px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.control-pad {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(72px, 110px));
+  grid-template-areas:
+    ". up ."
+    "left down right";
+  justify-content: center;
+  gap: 10px;
+}
+
+.drive-button {
+  min-height: 72px;
+  border-radius: 15px;
+  background: linear-gradient(180deg, #26344a, #1a2433);
+  font-size: 1.25rem;
+  font-weight: 900;
+  box-shadow: inset 0 1px rgba(255,255,255,.08);
+  touch-action: none;
+}
+
+.drive-button.active {
+  transform: translateY(2px);
+  background: linear-gradient(180deg, #397bc2, #24578e);
+}
+
+.up { grid-area: up; }
+.left { grid-area: left; }
+.down { grid-area: down; }
+.right { grid-area: right; }
+
+.telemetry-card input[type="range"] {
+  width: 100%;
+  margin: 8px 0 22px;
+}
+
+.meter-row {
+  margin-top: 20px;
+}
+
+.meter-row output {
+  min-width: 58px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  background: var(--panel-2);
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.presets {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 5px;
+}
+
+.presets label {
+  display: grid;
+  gap: 7px;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--panel-2);
+  color: var(--text);
+}
+
+pre {
+  min-height: 130px;
+  max-height: 250px;
+  overflow: auto;
+  margin: 16px 0 0;
+  padding: 14px;
+  border-radius: 12px;
+  background: #090c11;
+  color: #b9c8dc;
+  white-space: pre-wrap;
+  line-height: 1.45;
+}
+
+@media (max-width: 820px) {
+  .topbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .connection-panel {
+    width: 100%;
+  }
+
+  .controls-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .log-card {
+    grid-column: auto;
+  }
+}

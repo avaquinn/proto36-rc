@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PROTO36 Control Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="dashboard">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">REMOTE VEHICLE</p>
+        <h1>PROTO36 Dashboard</h1>
+      </div>
+
+      <div class="connection-panel">
+        <span id="connectionDot" class="status-dot"></span>
+        <span id="connectionText">Disconnected</span>
+        <button id="connectButton" class="secondary">Connect</button>
+      </div>
+    </header>
+
+    <section class="video-card card">
+      <div class="card-heading">
+        <div>
+          <p class="eyebrow">LIVE VIEW</p>
+          <h2>Front Camera</h2>
+        </div>
+        <button id="reloadVideoButton" class="secondary">Reload video</button>
+      </div>
+
+      <div class="video-frame">
+        <iframe
+          id="videoFrame"
+          title="PROTO36 live camera"
+          allow="autoplay; fullscreen"
+        ></iframe>
+      </div>
+    </section>
+
+    <section class="controls-grid">
+      <article class="card drive-card">
+        <div class="card-heading">
+          <div>
+            <p class="eyebrow">DRIVE</p>
+            <h2>Keyboard / Touch Controls</h2>
+          </div>
+          <button id="stopButton" class="stop-button">STOP</button>
+        </div>
+
+        <p class="hint">
+          Use W/S for throttle and A/D for steering. Releasing the keys returns the command to zero.
+        </p>
+
+        <div class="control-pad" aria-label="Drive controls">
+          <button class="drive-button up" data-control="forward">W</button>
+          <button class="drive-button left" data-control="left">A</button>
+          <button class="drive-button down" data-control="reverse">S</button>
+          <button class="drive-button right" data-control="right">D</button>
+        </div>
+      </article>
+
+      <article class="card telemetry-card">
+        <p class="eyebrow">COMMAND OUTPUT</p>
+        <h2>Current Values</h2>
+
+        <div class="meter-row">
+          <label for="throttleSlider">Throttle</label>
+          <output id="throttleValue">0.00</output>
+        </div>
+        <input id="throttleSlider" type="range" min="-1" max="1" step="0.05" value="0" />
+
+        <div class="meter-row">
+          <label for="steeringSlider">Steering</label>
+          <output id="steeringValue">0.00</output>
+        </div>
+        <input id="steeringSlider" type="range" min="-1" max="1" step="0.05" value="0" />
+
+        <div class="presets">
+          <label>
+            Drive strength
+            <select id="driveStrength">
+              <option value="0.25">25%</option>
+              <option value="0.5" selected>50%</option>
+              <option value="0.75">75%</option>
+              <option value="1">100%</option>
+            </select>
+          </label>
+
+          <label>
+            Steering strength
+            <select id="steeringStrength">
+              <option value="0.25">25%</option>
+              <option value="0.5" selected>50%</option>
+              <option value="0.75">75%</option>
+              <option value="1">100%</option>
+            </select>
+          </label>
+        </div>
+      </article>
+
+      <article class="card log-card">
+        <div class="card-heading">
+          <div>
+            <p class="eyebrow">SYSTEM</p>
+            <h2>Connection Log</h2>
+          </div>
+          <button id="clearLogButton" class="secondary">Clear</button>
+        </div>
+        <pre id="log">Dashboard ready.</pre>
+      </article>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
