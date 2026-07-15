@@ -171,6 +171,60 @@ h2 {
   line-height: 1.5;
 }
 
+.speed-indicator {
+  display: flex;
+  justify-content: center;
+  margin: 18px 0 24px;
+}
+
+.speed-ring {
+  --speed-angle: 180deg;
+
+  display: grid;
+  place-items: center;
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+
+  background:
+    radial-gradient(circle, var(--panel) 58%, transparent 60%),
+    conic-gradient(
+      var(--accent) 0deg,
+      var(--accent) var(--speed-angle),
+      var(--panel-2) var(--speed-angle),
+      var(--panel-2) 360deg
+    );
+
+  box-shadow:
+    0 0 25px rgba(77, 163, 255, 0.2),
+    inset 0 0 20px rgba(0, 0, 0, 0.35);
+}
+
+.speed-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.speed-label {
+  color: var(--muted);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.speed-content strong {
+  margin: 4px 0;
+  font-size: 2.4rem;
+  line-height: 1;
+}
+
+.speed-hint {
+  color: var(--accent-2);
+  font-size: 0.8rem;
+}
+
 .control-pad {
   display: grid;
   grid-template-columns: repeat(3, minmax(72px, 110px));

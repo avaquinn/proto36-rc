@@ -5,6 +5,8 @@ const videoUrl = `http://${host}:8889/cam`;
 let socket = null;
 let steering = 0;
 let throttle = 0;
+let speedLimit = 0.5;
+const speedStep = 0.1;
 const pressedKeys = new Set();
 
 const connectionDot = document.getElementById("connectionDot");
@@ -109,7 +111,7 @@ function stopVehicle() {
 }
 
 function recalculateFromKeys() {
-  const drive = Number(driveStrength.value);
+  const drive = speedLimit;
   const turn = Number(steeringStrength.value);
 
   throttle =
@@ -145,6 +147,14 @@ function setPressed(control, isPressed) {
   recalculateFromKeys();
 }
 
+function updateSpeedIndicator() {
+  const percent = Math.round(speedLimit * 100);
+  const angle = speedLimit * 360;
+
+  speedPercent.textContent = `${percent}%`;
+  speedRing.style.setProperty("--speed-angle", `${angle}deg`);
+}
+
 connectButton.addEventListener("click", connect);
 stopButton.addEventListener("click", stopVehicle);
 
@@ -156,6 +166,9 @@ document.getElementById("reloadVideoButton").addEventListener("click", () => {
 document.getElementById("clearLogButton").addEventListener("click", () => {
   logElement.textContent = "Log cleared.";
 });
+
+const speedRing = document.getElementById("speedRing");
+const speedPercent = document.getElementById("speedPercent");
 
 throttleSlider.addEventListener("input", () => {
   throttle = Number(throttleSlider.value);
@@ -183,6 +196,29 @@ for (const button of document.querySelectorAll(".drive-button")) {
 
 window.addEventListener("keydown", (event) => {
   const key = event.key.toLowerCase();
+  
+  if (key === "arrowup") {
+    event.preventDefault();
+
+    speedLimit = Math.min(1, speedLimit + speedStep);
+    updateSpeedIndicator();
+    recalculateFromKeys();
+
+    log(`Top speed set to ${Math.round(speedLimit * 100)}%`);
+    return;
+  }
+
+  if (key === "arrowdown") {
+    event.preventDefault();
+
+    speedLimit = Math.max(0, speedLimit - speedStep);
+    updateSpeedIndicator();
+    recalculateFromKeys();
+
+    log(`Top speed set to ${Math.round(speedLimit * 100)}%`);
+    return;
+  }
+
   if (!["w", "a", "s", "d"].includes(key)) {
     return;
   }
@@ -226,6 +262,7 @@ document.addEventListener("visibilitychange", () => {
 setInterval(sendCommand, 100);
 
 updateDisplay();
+updateSpeedIndicator();
 setConnectionState(false);
 log(`Video URL: ${videoUrl}`);
 log(`WebSocket URL: ${websocketUrl}`);

@@ -50,8 +50,18 @@
         </div>
 
         <p class="hint">
-          Use W/S for throttle and A/D for steering. Releasing the keys returns the command to zero.
+          Use W/S for throttle and A/D for steering. Use the arrow keys to adjust top speed.
         </p>
+
+       <div class="speed-indicator">
+         <div class="speed-ring" id="speedRing">
+           <div class="speed-content">
+              <span class="speed-label">TOP SPEED</span>
+              <strong id="speedPercent">50%</strong>
+              <span class="speed-hint">↑ / ↓</span>
+            </div>
+          </div>
+        </div>
 
         <div class="control-pad" aria-label="Drive controls">
           <button class="drive-button up" data-control="forward">W</button>
