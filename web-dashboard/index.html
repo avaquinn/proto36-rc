@@ -1,13 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+  <!--  ~~~~~~~~~~~~~~~ Page Configuration ~~~~~~~~~~~~~~~~~ -->
+
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
   <title>PROTO36 Control Dashboard</title>
+
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
   <main class="dashboard">
+
+    <!--  ~~~~~~~~~~~~~~~ Dashboard Header ~~~~~~~~~~~~~~~~~ -->
+
     <header class="topbar">
       <div>
         <p class="eyebrow">REMOTE VEHICLE</p>
@@ -15,11 +27,26 @@
       </div>
 
       <div class="connection-panel">
-        <span id="connectionDot" class="status-dot"></span>
-        <span id="connectionText">Disconnected</span>
-        <button id="connectButton" class="secondary">Connect</button>
+        <span
+          id="connectionDot"
+          class="status-dot"
+        ></span>
+
+        <span id="connectionText">
+          Disconnected
+        </span>
+
+        <button
+          id="connectButton"
+          class="secondary"
+        >
+          Connect
+        </button>
       </div>
     </header>
+
+
+    <!--  ~~~~~~~~~~~~~~~ Live Video Panel ~~~~~~~~~~~~~~~~~ -->
 
     <section class="video-card card">
       <div class="card-heading">
@@ -27,7 +54,13 @@
           <p class="eyebrow">LIVE VIEW</p>
           <h2>Front Camera</h2>
         </div>
-        <button id="reloadVideoButton" class="secondary">Reload video</button>
+
+        <button
+          id="reloadVideoButton"
+          class="secondary"
+        >
+          Reload video
+        </button>
       </div>
 
       <div class="video-frame">
@@ -39,76 +72,197 @@
       </div>
     </section>
 
+
+    <!--  ~~~~~~~~~~~~~~~ Dashboard Controls Grid ~~~~~~~~~~~~~~~~~ -->
+
     <section class="controls-grid">
+
+      <!--  ~~~~~~~~~~~~~~~ Drive Controls ~~~~~~~~~~~~~~~~~ -->
+
       <article class="card drive-card">
         <div class="card-heading">
           <div>
             <p class="eyebrow">DRIVE</p>
             <h2>Keyboard / Touch Controls</h2>
           </div>
-          <button id="stopButton" class="stop-button">STOP</button>
+
+          <button
+            id="stopButton"
+            class="stop-button"
+          >
+            STOP
+          </button>
         </div>
 
         <p class="hint">
-          Use W/S for throttle and A/D for steering. Use the arrow keys to adjust top speed.
+          Use W/S for throttle and A/D for steering.
+          Use the arrow keys to adjust top speed.
         </p>
 
-       <div class="speed-indicator">
-         <div class="speed-ring" id="speedRing">
-           <div class="speed-content">
-              <span class="speed-label">TOP SPEED</span>
-              <strong id="speedPercent">50%</strong>
-              <span class="speed-hint">↑ / ↓</span>
+
+        <!--  ~~~~~~~~~~~~~~~ Top Speed Indicator ~~~~~~~~~~~~~~~~~ -->
+
+        <div class="speed-indicator">
+          <div
+            id="speedRing"
+            class="speed-ring"
+          >
+            <div class="speed-content">
+              <span class="speed-label">
+                TOP SPEED
+              </span>
+
+              <strong id="speedPercent">
+                50%
+              </strong>
+
+              <span class="speed-hint">
+                ↑ / ↓
+              </span>
             </div>
           </div>
         </div>
 
-        <div class="control-pad" aria-label="Drive controls">
-          <button class="drive-button up" data-control="forward">W</button>
-          <button class="drive-button left" data-control="left">A</button>
-          <button class="drive-button down" data-control="reverse">S</button>
-          <button class="drive-button right" data-control="right">D</button>
+
+        <!--  ~~~~~~~~~~~~~~~ WASD Control Pad ~~~~~~~~~~~~~~~~~ -->
+
+        <div
+          class="control-pad"
+          aria-label="Drive controls"
+        >
+          <button
+            class="drive-button up"
+            data-control="forward"
+          >
+            W
+          </button>
+
+          <button
+            class="drive-button left"
+            data-control="left"
+          >
+            A
+          </button>
+
+          <button
+            class="drive-button down"
+            data-control="reverse"
+          >
+            S
+          </button>
+
+          <button
+            class="drive-button right"
+            data-control="right"
+          >
+            D
+          </button>
         </div>
       </article>
+
+
+      <!--  ~~~~~~~~~~~~~~~ Command Output ~~~~~~~~~~~~~~~~~ -->
 
       <article class="card telemetry-card">
         <p class="eyebrow">COMMAND OUTPUT</p>
         <h2>Current Values</h2>
 
-        <div class="meter-row">
-          <label for="throttleSlider">Throttle</label>
-          <output id="throttleValue">0.00</output>
-        </div>
-        <input id="throttleSlider" type="range" min="-1" max="1" step="0.05" value="0" />
+
+        <!--  ~~~~~~~~~~~~~~~ Throttle Control ~~~~~~~~~~~~~~~~~ -->
 
         <div class="meter-row">
-          <label for="steeringSlider">Steering</label>
-          <output id="steeringValue">0.00</output>
+          <label for="throttleSlider">
+            Throttle
+          </label>
+
+          <output id="throttleValue">
+            0.00
+          </output>
         </div>
-        <input id="steeringSlider" type="range" min="-1" max="1" step="0.05" value="0" />
+
+        <input
+          id="throttleSlider"
+          type="range"
+          min="-1"
+          max="1"
+          step="0.05"
+          value="0"
+        />
+
+
+        <!--  ~~~~~~~~~~~~~~~ Steering Control ~~~~~~~~~~~~~~~~~ -->
+
+        <div class="meter-row">
+          <label for="steeringSlider">
+            Steering
+          </label>
+
+          <output id="steeringValue">
+            0.00
+          </output>
+        </div>
+
+        <input
+          id="steeringSlider"
+          type="range"
+          min="-1"
+          max="1"
+          step="0.05"
+          value="0"
+        />
+
+
+        <!--  ~~~~~~~~~~~~~~~ Strength Presets ~~~~~~~~~~~~~~~~~ -->
 
         <div class="presets">
           <label>
             Drive strength
+
             <select id="driveStrength">
-              <option value="0.25">25%</option>
-              <option value="0.5" selected>50%</option>
-              <option value="0.75">75%</option>
-              <option value="1">100%</option>
+              <option value="0.25">
+                25%
+              </option>
+
+              <option value="0.5" selected>
+                50%
+              </option>
+
+              <option value="0.75">
+                75%
+              </option>
+
+              <option value="1">
+                100%
+              </option>
             </select>
           </label>
 
           <label>
             Steering strength
+
             <select id="steeringStrength">
-              <option value="0.25">25%</option>
-              <option value="0.5" selected>50%</option>
-              <option value="0.75">75%</option>
-              <option value="1">100%</option>
+              <option value="0.25">
+                25%
+              </option>
+
+              <option value="0.5" selected>
+                50%
+              </option>
+
+              <option value="0.75">
+                75%
+              </option>
+
+              <option value="1">
+                100%
+              </option>
             </select>
           </label>
         </div>
       </article>
+
+
+      <!--  ~~~~~~~~~~~~~~~ Connection Log ~~~~~~~~~~~~~~~~~ -->
 
       <article class="card log-card">
         <div class="card-heading">
@@ -116,13 +270,24 @@
             <p class="eyebrow">SYSTEM</p>
             <h2>Connection Log</h2>
           </div>
-          <button id="clearLogButton" class="secondary">Clear</button>
+
+          <button
+            id="clearLogButton"
+            class="secondary"
+          >
+            Clear
+          </button>
         </div>
+
         <pre id="log">Dashboard ready.</pre>
       </article>
     </section>
   </main>
 
+
+  <!--  ~~~~~~~~~~~~~~~ JavaScript ~~~~~~~~~~~~~~~~~ -->
+
   <script src="app.js"></script>
 </body>
+
 </html>
